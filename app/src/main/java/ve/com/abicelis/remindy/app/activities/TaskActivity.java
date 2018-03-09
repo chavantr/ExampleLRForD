@@ -47,9 +47,7 @@ import ve.com.abicelis.remindy.util.GeofenceUtil;
 import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
 import ve.com.abicelis.remindy.util.SnackbarUtil;
 
-/**
- * Created by abice on 24/4/2017.
- */
+
 
 public class TaskActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener  {

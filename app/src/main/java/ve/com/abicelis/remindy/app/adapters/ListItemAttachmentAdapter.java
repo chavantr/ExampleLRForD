@@ -11,9 +11,7 @@ import ve.com.abicelis.remindy.R;
 import ve.com.abicelis.remindy.app.holders.ListItemAttachmentViewHolder;
 import ve.com.abicelis.remindy.model.attachment.ListItemAttachment;
 
-/**
- * Created by abice on 19/3/2017.
- */
+
 
 public class ListItemAttachmentAdapter extends RecyclerView.Adapter<ListItemAttachmentViewHolder> {
 

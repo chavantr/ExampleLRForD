@@ -9,9 +9,6 @@ import java.util.List;
 
 import ve.com.abicelis.remindy.R;
 
-/**
- * Created by abice on 3/3/2017.
- */
 
 public enum TaskStatus implements Serializable {
     UNPROGRAMMED(R.string.task_status_unprogrammed),

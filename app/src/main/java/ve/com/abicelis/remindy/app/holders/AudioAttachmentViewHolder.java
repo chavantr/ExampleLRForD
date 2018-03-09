@@ -25,9 +25,7 @@ import ve.com.abicelis.remindy.app.dialogs.RecordAudioDialogFragment;
 import ve.com.abicelis.remindy.model.attachment.AudioAttachment;
 import ve.com.abicelis.remindy.util.FileUtil;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class AudioAttachmentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener, RecordAudioDialogFragment.RecordAudioDialogFinishListener {
 

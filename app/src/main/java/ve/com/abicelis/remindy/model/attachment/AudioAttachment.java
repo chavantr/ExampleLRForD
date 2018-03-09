@@ -2,9 +2,7 @@ package ve.com.abicelis.remindy.model.attachment;
 
 import ve.com.abicelis.remindy.enums.AttachmentType;
 
-/**
- * Created by abice on 3/3/2017.
- */
+
 
 public class AudioAttachment extends Attachment {
 

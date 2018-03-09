@@ -18,9 +18,7 @@ import ve.com.abicelis.remindy.model.reminder.OneTimeReminder;
 import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
 import ve.com.abicelis.remindy.util.SnackbarUtil;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class OneTimeReminderDetailFragment extends Fragment {
 

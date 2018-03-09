@@ -7,9 +7,6 @@ import java.security.InvalidParameterException;
 import ve.com.abicelis.remindy.enums.TaskViewModelType;
 import ve.com.abicelis.remindy.model.Task;
 
-/**
- * Created by abice on 26/3/2017.
- */
 
 public class TaskViewModel {
 
@@ -22,7 +19,7 @@ public class TaskViewModel {
 
     public TaskViewModel(@NonNull Task task, @NonNull TaskViewModelType viewModelType) {
 
-        if(viewModelType == TaskViewModelType.HEADER)
+        if (viewModelType == TaskViewModelType.HEADER)
             throw new InvalidParameterException("TaskViewModelType cannot be of type HEADER");
 
         this.task = task;
@@ -39,10 +36,14 @@ public class TaskViewModel {
     public Task getTask() {
         return task;
     }
+
     public String getHeaderTitle() {
         return headerTitle;
     }
-    public boolean isHeaderTitleRed() {return headerTitleRed;}
+
+    public boolean isHeaderTitleRed() {
+        return headerTitleRed;
+    }
 
     public TaskViewModelType getViewModelType() {
         return viewModelType;

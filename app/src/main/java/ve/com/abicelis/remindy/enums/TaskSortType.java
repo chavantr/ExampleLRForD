@@ -8,9 +8,6 @@ import java.util.List;
 
 import ve.com.abicelis.remindy.R;
 
-/**
- * Created by abice on 3/3/2017.
- */
 
 public enum TaskSortType {
     DATE(R.string.task_sort_type_date, R.string.task_sort_type_date_message),

@@ -8,9 +8,6 @@ import java.util.List;
 
 import ve.com.abicelis.remindy.R;
 
-/**
- * Created by abice on 16/3/2017.
- */
 
 public enum ReminderRepeatType {
     DAILY(R.string.reminder_repeat_type_daily),

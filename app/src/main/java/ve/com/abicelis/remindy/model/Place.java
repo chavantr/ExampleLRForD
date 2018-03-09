@@ -2,9 +2,7 @@ package ve.com.abicelis.remindy.model;
 
 import java.io.Serializable;
 
-/**
- * Created by abice on 8/3/2017.
- */
+
 
 public class Place implements Serializable {
 

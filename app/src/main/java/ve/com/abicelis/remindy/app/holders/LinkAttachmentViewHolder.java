@@ -18,9 +18,7 @@ import ve.com.abicelis.remindy.exception.MalformedLinkException;
 import ve.com.abicelis.remindy.model.attachment.LinkAttachment;
 import ve.com.abicelis.remindy.util.ClipboardUtil;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class LinkAttachmentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener, EditLinkAttachmentDialogFragment.EditLinkAttachmentDialogDismissListener {
 

@@ -51,9 +51,7 @@ import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
 import ve.com.abicelis.remindy.util.SnackbarUtil;
 import ve.com.abicelis.remindy.util.TapTargetSequenceUtil;
 
-/**
- * Created by abice on 18/4/2017.
- */
+
 
 public class EditImageAttachmentActivity extends AppCompatActivity implements View.OnClickListener{
 

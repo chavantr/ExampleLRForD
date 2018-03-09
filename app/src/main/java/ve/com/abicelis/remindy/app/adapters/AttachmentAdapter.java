@@ -23,9 +23,7 @@ import ve.com.abicelis.remindy.model.attachment.ListAttachment;
 import ve.com.abicelis.remindy.model.attachment.TextAttachment;
 import ve.com.abicelis.remindy.util.FileUtil;
 
-/**
- * Created by abice on 19/3/2017.
- */
+
 
 public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Remindy</string>
+    <string name="app_name" translatable="false">Event Reminder System</string>
 
     /* About Activity */
     <string name="activity_about_toolbar_title">About</string>
@@ -9,7 +9,6 @@
     <string name="activity_about_market_link">Rate app</string>
     <string name="activity_about_github_link">View GitHub Project</string>
     <string name="activity_about_website_link" translatable="false">www.alejandrobicelis.com.ve</string>
-
 
 
     /* Home Activity */
@@ -22,7 +21,6 @@
     <string name="menu_home_action_sort">Sort</string>
     <string name="menu_home_action_about">About</string>
     <string name="menu_home_action_rate">Rate app</string>
-
 
 
     /* Task Detail Activity */
@@ -51,7 +49,6 @@
     <string name="fragment_detail_reminder_repeating_time_title">Time</string>
     <string name="fragment_detail_reminder_repeating_repeat_title">Repeat</string>
     <string name="fragment_detail_reminder_repeating_next_title">Next event</string>
-
 
 
     /* List Places Activity */
@@ -199,9 +196,6 @@
     <string name="fragment_reminder_no_places_dialog_negative">Cancel</string>
 
 
-
-
-
     //Edit One-Time reminder fragment
     <string name="fragment_edit_one_time_reminder_date_title">Date</string>
     <string name="fragment_edit_one_time_reminder_date_hint">Enter a date</string>
@@ -229,7 +223,6 @@
     <string name="fragment_edit_location_based_reminder_exiting">Exiting</string>
 
 
-
     /* Fragment detail reminder location based */
     <string name="fragment_detail_location_based_reminder_radius">%1$dm radius, %2$s</string>
     <string name="fragment_detail_location_based_reminder_entering_or_exiting">Entering or Exiting</string>
@@ -252,8 +245,6 @@
     /* Fragment Reminders */
     <string name="fragment_reminder_list_no_items">There are no Tasks</string>
     <string name="fragment_reminder_list_place_anywhere">Anywhere</string>
-
-
 
 
     /* Transitions */
@@ -302,7 +293,6 @@
     <string name="reminder_repeat_end_type_for_x_events">For a number of events</string>
 
 
-
     /* Task headers */
     <string name="task_header_overdue">Overdue</string>
     <string name="task_header_location_based">Location-based</string>
@@ -321,7 +311,6 @@
     <string name="task_header_this_year">This year</string>
     <string name="task_header_next_year">Next year</string>
     <string name="task_header_future">Future</string>
-
 
 
     /* Datepickers */
@@ -370,8 +359,6 @@
     <string name="home_contextual_menu_delete">Delete</string>
     <string name="home_contextual_menu_done">Done</string>
     <string name="home_contextual_menu_not_done">Not done</string>
-
-
 
 
     /* Record Audio Dialog */
@@ -436,13 +423,11 @@
     <string name="error_generic_reminder">There was a problem with the reminder data, please report this error</string>
 
 
-
     /* Links */
     <string name="url_market" translatable="false">market://details?id=ve.com.abicelis.remindy</string>
     <string name="url_github" translatable="false">github.com/abicelis/</string>
     <string name="url_website" translatable="false">www.alejandrobicelis.com.ve</string>
     <string name="address_email" translatable="false">alejandro@alejandrobicelis.com.ve</string>
-
 
 
     /* FetchAddressIntentService */
@@ -452,7 +437,7 @@
     <string name="address_found">Found address</string>
 
 
-    /*  Generic messages  */
+    /* Generic messages */
     <string name="error_unexpected">Unexpected error occurred. Please report this error</string>
     <string name="error_updating_attachment_data">Unexpected error while updating the attachment</string>
     <string name="backup_restore_no_permissions">No permission given, aborting process</string>
@@ -464,7 +449,7 @@
     <string name="restore_failed">Error restoring data</string>
 
 
-    /*  File subdirectories  */
+    /* File subdirectories */
     <string name="subdirectory_attachments_audio" translatable="false">attachments/audio</string>
     <string name="subdirectory_attachments_image" translatable="false">attachments/image</string>
 
@@ -488,7 +473,6 @@
 
 
     <string name="task_actions_service_could_not_set_done">Error: Could not set task as DONE</string>
-
 
 
     <string name="notification_service_geofence_title" translatable="false">%1$s %2$s</string>
@@ -519,6 +503,14 @@
 
     <string name="ttsu_activity_place_radius_icon_title">Adjust the radius</string>
     <string name="ttsu_activity_place_radius_icon_description">Use the slider to tweak the detection radius</string>
+    <string name="enter_username">Enter username</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_phone">Enter phone</string>
+    <string name="enter_password">Enter password</string>
 
 
 </resources>

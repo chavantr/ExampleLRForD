@@ -4,9 +4,7 @@ import java.io.Serializable;
 
 import ve.com.abicelis.remindy.enums.ReminderType;
 
-/**
- * Created by abice on 24/3/2017.
- */
+
 
 public abstract class Reminder implements Serializable {
 

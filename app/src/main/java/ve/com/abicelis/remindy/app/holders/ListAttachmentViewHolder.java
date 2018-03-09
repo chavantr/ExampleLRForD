@@ -19,9 +19,7 @@ import ve.com.abicelis.remindy.model.attachment.ListAttachment;
 import ve.com.abicelis.remindy.model.attachment.ListItemAttachment;
 import ve.com.abicelis.remindy.util.ClipboardUtil;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class ListAttachmentViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
 

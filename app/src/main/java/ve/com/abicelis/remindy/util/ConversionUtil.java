@@ -6,20 +6,12 @@ import android.location.LocationManager;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
 import java.security.InvalidParameterException;
 
 import ve.com.abicelis.remindy.enums.ReminderType;
 import ve.com.abicelis.remindy.enums.TaskViewModelType;
 import ve.com.abicelis.remindy.model.Place;
-import ve.com.abicelis.remindy.viewmodel.TaskViewModel;
 
-/**
- * Created by Alex on 9/3/2017.
- */
 
 public class ConversionUtil {
     /**

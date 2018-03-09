@@ -10,9 +10,6 @@ import java.util.Locale;
 
 import ve.com.abicelis.remindy.R;
 
-/**
- * Created by abice on 16/4/2017.
- */
 
 public class ClipboardUtil {
 

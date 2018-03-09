@@ -19,9 +19,7 @@ import ve.com.abicelis.remindy.enums.TimeFormat;
 import ve.com.abicelis.remindy.enums.TriggerMinutesBeforeNotificationType;
 import ve.com.abicelis.remindy.enums.TapTargetSequenceType;
 
-/**
- * Created by abice on 1/4/2017.
- */
+
 
 public class SharedPreferenceUtil {
 

@@ -2,14 +2,13 @@ package ve.com.abicelis.remindy.database;
 
 import android.provider.BaseColumns;
 
-/**
- * Created by Alex on 9/3/2017.
- */
+
 final class RemindyContract {
 
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
-    RemindyContract() { }
+    RemindyContract() {
+    }
 
     /* One-time Reminders Table */
     static abstract class OneTimeReminderTable implements BaseColumns {
@@ -18,6 +17,19 @@ final class RemindyContract {
         static final TableColumn COLUMN_NAME_TASK_FK = new TableColumn(DataType.INTEGER, "fk_task");
         static final TableColumn COLUMN_NAME_DATE = new TableColumn(DataType.INTEGER, "date");
         static final TableColumn COLUMN_NAME_TIME = new TableColumn(DataType.INTEGER, "time");
+    }
+
+    static abstract class UserTable implements BaseColumns {
+
+        static final String TABLE_NAME = "user";
+
+
+        static final TableColumn COLUMN_NAME = new TableColumn(DataType.TEXT, "name");
+        static final TableColumn COLUMN_EMAIL = new TableColumn(DataType.TEXT, "email");
+        static final TableColumn COLUMN_PHONE = new TableColumn(DataType.TEXT, "phone");
+        static final TableColumn COLUMN_PASSWORD = new TableColumn(DataType.TEXT, "password");
+
+
     }
 
 
@@ -78,8 +90,6 @@ final class RemindyContract {
         static final TableColumn COLUMN_NAME_CONTENT_TEXT = new TableColumn(DataType.TEXT, "text_content");
         static final TableColumn COLUMN_NAME_CONTENT_BLOB = new TableColumn(DataType.BLOB, "blob_content");
     }
-
-
 
 
 }

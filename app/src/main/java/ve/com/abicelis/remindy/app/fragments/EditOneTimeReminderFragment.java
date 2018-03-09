@@ -24,9 +24,7 @@ import ve.com.abicelis.remindy.model.reminder.OneTimeReminder;
 import ve.com.abicelis.remindy.util.CalendarUtil;
 import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
 
-/**
- * Created by abice on 20/4/2017.
- */
+
 
 public class EditOneTimeReminderFragment extends Fragment implements TaskDataInterface {
 

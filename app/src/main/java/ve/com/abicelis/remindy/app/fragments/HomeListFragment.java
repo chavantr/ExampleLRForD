@@ -40,9 +40,7 @@ import ve.com.abicelis.remindy.util.ConversionUtil;
 import ve.com.abicelis.remindy.util.SnackbarUtil;
 import ve.com.abicelis.remindy.viewmodel.TaskViewModel;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class HomeListFragment extends Fragment implements ViewHolderClickListener {
 

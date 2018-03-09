@@ -18,9 +18,7 @@ import ve.com.abicelis.remindy.app.adapters.AttachmentAdapter;
 import ve.com.abicelis.remindy.model.attachment.ImageAttachment;
 import ve.com.abicelis.remindy.util.ImageUtil;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class ImageAttachmentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 

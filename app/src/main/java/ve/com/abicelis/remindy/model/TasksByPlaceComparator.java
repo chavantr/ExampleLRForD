@@ -6,9 +6,7 @@ import ve.com.abicelis.remindy.enums.ReminderType;
 import ve.com.abicelis.remindy.model.Task;
 import ve.com.abicelis.remindy.model.reminder.LocationBasedReminder;
 
-/**
- * Created by abice on 11/3/2017.
- */
+
 
 public class TasksByPlaceComparator implements Comparator<Task> {
     @Override

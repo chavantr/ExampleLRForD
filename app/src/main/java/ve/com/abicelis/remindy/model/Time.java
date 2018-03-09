@@ -6,14 +6,7 @@ import java.util.Locale;
 
 import ve.com.abicelis.remindy.enums.TimeFormat;
 
-/**
- * Created by abice on 8/3/2017.
- */
 
-
-/**
- * Note: Internally handles time always as 24H time.
- */
 public class Time implements Comparable<Time>, Serializable {
     private int hour;
     private int minute;

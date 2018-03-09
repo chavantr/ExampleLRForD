@@ -18,14 +18,11 @@ import ve.com.abicelis.remindy.model.TasksByDoneDateComparator;
 import ve.com.abicelis.remindy.model.TasksByPlaceComparator;
 import ve.com.abicelis.remindy.model.TasksByReminderDateComparator;
 import ve.com.abicelis.remindy.model.reminder.LocationBasedReminder;
-import ve.com.abicelis.remindy.model.reminder.OneTimeReminder;
 import ve.com.abicelis.remindy.model.reminder.RepeatingReminder;
 import ve.com.abicelis.remindy.util.TaskUtil;
 import ve.com.abicelis.remindy.viewmodel.TaskViewModel;
 
-/**
- * Created by abice on 26/3/2017.
- */
+
 
 public class TaskSortingUtil {
 

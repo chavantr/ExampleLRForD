@@ -1,12 +1,10 @@
 package ve.com.abicelis.remindy.util;
 
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
@@ -23,9 +21,6 @@ import ve.com.abicelis.remindy.model.Task;
 import static android.content.Context.NOTIFICATION_SERVICE;
 import static ve.com.abicelis.remindy.app.activities.TaskDetailActivity.TASK_ID_TO_DISPLAY;
 
-/**
- * Created by abice on 1/5/2017.
- */
 
 public class NotificationUtil {
 
@@ -64,7 +59,7 @@ public class NotificationUtil {
         mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.icon_remindy_notification_small)
                 .setColor(ContextCompat.getColor(context, R.color.primary))
-                .setVibrate(new long[] { 50, 50, 200, 50 })
+                .setVibrate(new long[]{50, 50, 200, 50})
                 .setLights(ContextCompat.getColor(context, R.color.primary), 3000, 3000)
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                 .setContentTitle(contentTitle)
@@ -79,7 +74,7 @@ public class NotificationUtil {
 
                 //BigView
                 .setStyle(new NotificationCompat.BigTextStyle()
-                .bigText(contentText))
+                        .bigText(contentText))
                 .addAction(R.drawable.icon_notification_done, context.getResources().getString(R.string.notification_big_view_set_done), setTaskDonePendingIntent)
                 .addAction(R.drawable.icon_notification_postpone, context.getResources().getString(R.string.notification_big_view_postpone), postponeTaskPendingIntent);
 
@@ -94,13 +89,11 @@ public class NotificationUtil {
                                                         List<Task> triggeredTasks) {
 
 
-
-
         NotificationCompat.Builder mBuilder;
         mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.icon_remindy_notification_small)
                 .setColor(ContextCompat.getColor(context, R.color.primary))
-                .setVibrate(new long[] { 50, 50, 200, 50 })
+                .setVibrate(new long[]{50, 50, 200, 50})
                 .setLights(ContextCompat.getColor(context, R.color.primary), 3000, 3000)
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                 .setContentTitle(contentTitle)
@@ -110,7 +103,7 @@ public class NotificationUtil {
                 //Make notification pop-up in post 5.0 devices
                 .setPriority(Notification.PRIORITY_HIGH);
 
-        if(triggeredTasks.size() == 1) {
+        if (triggeredTasks.size() == 1) {
 
             //Intent for "DONE" button on BigView style
             Intent setTaskDoneIntent = new Intent(context, TaskActionsIntentService.class);
@@ -153,7 +146,7 @@ public class NotificationUtil {
             //InboxStyle BigView (Multiline!)
             NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
             inboxStyle.setBigContentTitle(contentTitle);
-            for (Task task: triggeredTasks)
+            for (Task task : triggeredTasks)
                 inboxStyle.addLine("- " + task.getTitle());
 
             //Add pendingIntent to notification

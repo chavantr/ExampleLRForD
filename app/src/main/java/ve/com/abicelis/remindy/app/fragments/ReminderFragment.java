@@ -34,9 +34,7 @@ import ve.com.abicelis.remindy.util.SnackbarUtil;
 
 import static android.app.Activity.RESULT_CANCELED;
 
-/**
- * Created by abice on 25/4/2017.
- */
+
 
 public class ReminderFragment extends Fragment implements TaskDataInterface {
 

@@ -5,21 +5,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * Created by abice on 17/4/2017.
- */
 
 public class ImageUtil {
 
     /**
      * Returns a bitmap of the image contained in the byte array
+     *
      * @param imgInBytes The image in a byte[]
      */
     public static Bitmap getBitmap(byte[] imgInBytes) {
@@ -30,6 +27,7 @@ public class ImageUtil {
 
     /**
      * Returns a bitmap of the image at the specified path
+     *
      * @param path The path to the image
      */
     public static Bitmap getBitmap(String path) {
@@ -38,6 +36,7 @@ public class ImageUtil {
 
     /**
      * Returns a bitmap of the image at the specified path
+     *
      * @param file The file containing the path to the image
      */
     public static Bitmap getBitmap(File file) {
@@ -46,6 +45,7 @@ public class ImageUtil {
 
     /**
      * Returns a bitmap of the image at the specified uri
+     *
      * @param uri The URI containing the path to the image
      */
     public static Bitmap getBitmap(Uri uri, Activity activity) throws IOException {
@@ -67,6 +67,7 @@ public class ImageUtil {
 
     /**
      * Returns a compressed JPEG byte[] representation of a Bitmap
+     *
      * @param bitmap  Bitmap
      * @param quality int
      * @return compressed JPEG byte array
@@ -80,9 +81,10 @@ public class ImageUtil {
 
     /**
      * Saves a JPEG at the given quality to disk at the specified path of the given File
-     * @param file The file where the JPEG will be saved
+     *
+     * @param file         The file where the JPEG will be saved
      * @param bitmapToSave The Bitmap to save into the file
-     * @param quality The percentage of JPEG compression
+     * @param quality      The percentage of JPEG compression
      */
     public static void saveBitmapAsJpeg(File file, Bitmap bitmapToSave, int quality) throws IOException {
         FileOutputStream fos = new FileOutputStream(file);
@@ -91,15 +93,13 @@ public class ImageUtil {
     }
 
 
-
-
     /**
      * Returns a scaled Bitmap with:
-     *  - Its larger dimension = largerScaledDimension in px
-     *  - Its smaller dimension scaled, according to the bitmap's original aspect ratio
-     *
-     *  Note: if the bitmap's dimensions are already smaller than largerScaledDimension
-     *  then nothing will be done to the bitmap
+     * - Its larger dimension = largerScaledDimension in px
+     * - Its smaller dimension scaled, according to the bitmap's original aspect ratio
+     * <p>
+     * Note: if the bitmap's dimensions are already smaller than largerScaledDimension
+     * then nothing will be done to the bitmap
      */
     public static Bitmap scaleBitmap(Bitmap image, int largerScaledDimension) {
 
@@ -113,7 +113,7 @@ public class ImageUtil {
         // Resize the larger dimension of the image to largerScaledDimension and calculate other size
         // respecting the image's aspect ratio
         boolean heightLargerThanWidth = (image.getHeight() > image.getWidth());
-        float aspectRatio = (heightLargerThanWidth ? (float)image.getHeight() / (float)image.getWidth() : (float)image.getWidth() / (float)image.getHeight());
+        float aspectRatio = (heightLargerThanWidth ? (float) image.getHeight() / (float) image.getWidth() : (float) image.getWidth() / (float) image.getHeight());
         int smallerScaledDimension = (int) (largerScaledDimension / aspectRatio);
         int scaledWidth = (heightLargerThanWidth ? smallerScaledDimension : largerScaledDimension);
         int scaledHeight = (heightLargerThanWidth ? largerScaledDimension : smallerScaledDimension);

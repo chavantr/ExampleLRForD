@@ -14,9 +14,7 @@ import ve.com.abicelis.remindy.enums.TaskStatus;
 import ve.com.abicelis.remindy.model.attachment.Attachment;
 import ve.com.abicelis.remindy.model.reminder.Reminder;
 
-/**
- * Created by abice on 3/3/2017.
- */
+
 
 public class Task implements Serializable {
 

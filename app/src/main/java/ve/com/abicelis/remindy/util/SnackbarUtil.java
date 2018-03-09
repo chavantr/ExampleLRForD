@@ -13,10 +13,6 @@ import android.widget.TextView;
 
 import ve.com.abicelis.remindy.R;
 
-/**
- * Created by abice on 18/3/2017.
- */
-
 public class SnackbarUtil {
 
 
@@ -29,9 +25,9 @@ public class SnackbarUtil {
         Snackbar snackbar = Snackbar.make(container, textStringRes, duration.getDuration());
         snackbar.getView().setBackgroundResource(snackbarType.getColorRes());
         TextView snackbarText = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
-        snackbarText.setCompoundDrawablesWithIntrinsicBounds(0, 0,snackbarType.getIconRes(), 0);
+        snackbarText.setCompoundDrawablesWithIntrinsicBounds(0, 0, snackbarType.getIconRes(), 0);
         snackbarText.setGravity(Gravity.CENTER);
-        if(callback != null)
+        if (callback != null)
             snackbar.addCallback(callback);
         snackbar.show();
     }
@@ -44,7 +40,7 @@ public class SnackbarUtil {
 
         private int duration;
 
-        SnackbarDuration(int duration){
+        SnackbarDuration(int duration) {
             this.duration = duration;
         }
 
@@ -58,19 +54,23 @@ public class SnackbarUtil {
         SUCCESS(R.color.snackbar_success_background, R.drawable.icon_success_snackbar),
         NOTICE(R.color.snackbar_notice_background, R.drawable.icon_error_snackbar);
 
-        private @ColorRes int colorRes;
-        private @DrawableRes int iconRes;
+        private @ColorRes
+        int colorRes;
+        private @DrawableRes
+        int iconRes;
 
-        SnackbarType(@ColorRes int colorRes, @DrawableRes int iconRes){
+        SnackbarType(@ColorRes int colorRes, @DrawableRes int iconRes) {
             this.colorRes = colorRes;
             this.iconRes = iconRes;
         }
 
-        public @ColorRes int getColorRes() {
+        public @ColorRes
+        int getColorRes() {
             return colorRes;
         }
 
-        public @DrawableRes int getIconRes() {
+        public @DrawableRes
+        int getIconRes() {
             return iconRes;
         }
     }

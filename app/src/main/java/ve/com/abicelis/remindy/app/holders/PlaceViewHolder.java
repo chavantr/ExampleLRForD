@@ -29,9 +29,7 @@ import ve.com.abicelis.remindy.app.activities.PlaceListActivity;
 import ve.com.abicelis.remindy.app.adapters.PlaceAdapter;
 import ve.com.abicelis.remindy.model.Place;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, OnMapReadyCallback {
 

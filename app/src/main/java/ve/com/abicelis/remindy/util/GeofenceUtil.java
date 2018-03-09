@@ -23,9 +23,6 @@ import ve.com.abicelis.remindy.app.services.GeofenceNotificationIntentService;
 import ve.com.abicelis.remindy.database.RemindyDAO;
 import ve.com.abicelis.remindy.model.Place;
 
-/**
- * Created by abice on 2/5/2017.
- */
 
 public class GeofenceUtil {
 
@@ -41,7 +38,7 @@ public class GeofenceUtil {
         checkGoogleApiClient(googleApiClient);
         List<Place> places = new RemindyDAO(context).getActivePlaces();
 
-        if(places.size() > 0) {
+        if (places.size() > 0) {
             if (PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)) {
                 LocationServices.GeofencingApi.addGeofences(
                         googleApiClient,
@@ -50,7 +47,7 @@ public class GeofenceUtil {
                 ).setResultCallback(new ResultCallback<Status>() {
                     @Override
                     public void onResult(@NonNull Status status) {
-                        if(status.isSuccess())
+                        if (status.isSuccess())
                             Toast.makeText(context, "Geofences added/updated!", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -67,8 +64,8 @@ public class GeofenceUtil {
             LocationServices.GeofencingApi.removeGeofences(googleApiClient, getGeofencePendingIntent(context)).setResultCallback(new ResultCallback<Status>() {
                 @Override
                 public void onResult(@NonNull Status status) {
-                    if(status.isSuccess())
-                    Toast.makeText(context, "Geofences removed!", Toast.LENGTH_SHORT).show();
+                    if (status.isSuccess())
+                        Toast.makeText(context, "Geofences removed!", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -83,7 +80,7 @@ public class GeofenceUtil {
                     .setResultCallback(new ResultCallback<Status>() {
                         @Override
                         public void onResult(@NonNull Status status) {
-                            if(status.isSuccess()) {
+                            if (status.isSuccess()) {
                                 addGeofences(context, googleApiClient);
                             }
                         }
@@ -97,7 +94,7 @@ public class GeofenceUtil {
     /* GeoFence helper methods */
 
     private static void checkGoogleApiClient(GoogleApiClient googleApiClient) {
-        if(googleApiClient == null || !googleApiClient.isConnected()) {
+        if (googleApiClient == null || !googleApiClient.isConnected()) {
             throw new IllegalStateException("Google API client must be connected");
         }
     }
@@ -113,7 +110,7 @@ public class GeofenceUtil {
     private static List<Geofence> getGeofenceList(List<Place> places) {
         List<Geofence> geofenceList = new ArrayList<>();
 
-        for (Place place : places){
+        for (Place place : places) {
             geofenceList.add(new Geofence.Builder()
                     // Set the request ID of the geofence. This is a string to identify this
                     // geofence.
@@ -142,7 +139,7 @@ public class GeofenceUtil {
         Intent intent = new Intent(context, GeofenceNotificationIntentService.class);
         // We use FLAG_UPDATE_CURRENT so that we get the same pending intent back when
         // calling addGeofences() and removeGeofences().
-        mGeofencePendingIntent =  PendingIntent.getService(context, 0, intent, PendingIntent.
+        mGeofencePendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.
                 FLAG_UPDATE_CURRENT);
 
         return mGeofencePendingIntent;

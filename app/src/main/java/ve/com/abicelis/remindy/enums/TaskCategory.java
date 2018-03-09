@@ -9,9 +9,6 @@ import java.util.List;
 
 import ve.com.abicelis.remindy.R;
 
-/**
- * Created by abice on 3/3/2017.
- */
 
 public enum TaskCategory {
     BUSINESS(R.string.task_category_business, R.drawable.icon_category_business),
@@ -20,8 +17,10 @@ public enum TaskCategory {
     REPAIRS(R.string.task_category_repairs, R.drawable.icon_category_repairs),
     SHOPPING(R.string.task_category_shopping, R.drawable.icon_category_shopping);
 
-    private @StringRes int friendlyNameRes;
-    private @DrawableRes int iconRes;
+    private @StringRes
+    int friendlyNameRes;
+    private @DrawableRes
+    int iconRes;
 
     TaskCategory(@StringRes int friendlyNameRes, @DrawableRes int iconRes) {
         this.friendlyNameRes = friendlyNameRes;
@@ -32,6 +31,7 @@ public enum TaskCategory {
     public int getFriendlyNameRes() {
         return friendlyNameRes;
     }
+
     public int getIconRes() {
         return iconRes;
     }

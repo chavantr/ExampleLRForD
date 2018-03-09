@@ -7,9 +7,7 @@ import java.util.regex.Pattern;
 import ve.com.abicelis.remindy.enums.AttachmentType;
 import ve.com.abicelis.remindy.exception.MalformedLinkException;
 
-/**
- * Created by abice on 3/3/2017.
- */
+
 
 public class LinkAttachment extends Attachment {
 

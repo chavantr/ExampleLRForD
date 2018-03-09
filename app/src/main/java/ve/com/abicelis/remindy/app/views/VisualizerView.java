@@ -10,10 +10,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by abice on 11/4/2017.
- * Note: Original code came from: http://stackoverflow.com/questions/14295427/android-audio-recording-with-voice-level-visualization
- */
+
 
 public class VisualizerView extends View {
     private static final int LINE_WIDTH = 2; // width of visualizer lines

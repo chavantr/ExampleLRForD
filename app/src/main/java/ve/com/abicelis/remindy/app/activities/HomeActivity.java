@@ -30,9 +30,7 @@ import ve.com.abicelis.remindy.enums.TaskSortType;
 import ve.com.abicelis.remindy.enums.ViewPagerTaskDisplayType;
 import ve.com.abicelis.remindy.util.SnackbarUtil;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -180,7 +178,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 SnackbarUtil.showSnackbar(mViewpager, SnackbarUtil.SnackbarType.NOTICE, mTaskSortType.getFriendlyMessageRes(), SnackbarUtil.SnackbarDuration.SHORT, null);
                 return true;
 
-            case R.id.menu_home_settings:
+          /*  case R.id.menu_home_settings:
                 Intent goToSettingsActivity = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivityForResult(goToSettingsActivity, SettingsActivity.SETTINGS_ACTIVITY_REQUEST_CODE);
                 return true;
@@ -194,7 +192,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 Intent playStoreIntent = new Intent(Intent.ACTION_VIEW);
                 playStoreIntent.setData(Uri.parse(getResources().getString(R.string.url_market)));
                 startActivity(playStoreIntent);
-                return true;
+                return true;*/
         }
         return super.onOptionsItemSelected(item);
     }

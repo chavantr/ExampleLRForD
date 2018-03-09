@@ -65,9 +65,7 @@ import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
 import ve.com.abicelis.remindy.util.SnackbarUtil;
 import ve.com.abicelis.remindy.util.TaskUtil;
 
-/**
- * Created by abice on 30/3/2017.
- */
+
 
 public class TaskDetailActivity extends AppCompatActivity implements View.OnClickListener,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener  {

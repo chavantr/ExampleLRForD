@@ -11,16 +11,13 @@ import ve.com.abicelis.remindy.model.attachment.ListAttachment;
 import ve.com.abicelis.remindy.model.attachment.ListItemAttachment;
 import ve.com.abicelis.remindy.model.attachment.TextAttachment;
 
-/**
- * Created by abice on 20/4/2017.
- */
 
 public class AttachmentUtil {
 
     public static void cleanInvalidAttachments(List<Attachment> attachments) {
 
         Iterator<Attachment> attachmentIterator = attachments.iterator();
-        while(attachmentIterator.hasNext()) {
+        while (attachmentIterator.hasNext()) {
 
             Attachment attachment = attachmentIterator.next();
             switch (attachment.getType()) {

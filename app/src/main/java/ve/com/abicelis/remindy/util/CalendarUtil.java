@@ -4,9 +4,6 @@ import java.util.Calendar;
 
 import ve.com.abicelis.remindy.model.Time;
 
-/**
- * Created by abice on 26/4/2017.
- */
 
 public class CalendarUtil {
 
@@ -20,7 +17,7 @@ public class CalendarUtil {
     }
 
     public static void copyCalendar(Calendar copyFrom, Calendar copyTo) {
-        if(copyFrom == null || copyTo == null)
+        if (copyFrom == null || copyTo == null)
             throw new NullPointerException("copyCalendar(), One of both parameters are null");
 
         copyTo.setTimeZone(copyFrom.getTimeZone());
@@ -28,12 +25,12 @@ public class CalendarUtil {
     }
 
     public static long getDifferenceMinutesBetween(Calendar a, Calendar b) {
-        long differenceMinutes = ( a.getTimeInMillis() - b.getTimeInMillis() ) / 60000; //60 * 1000    toMinutes * toSeconds
+        long differenceMinutes = (a.getTimeInMillis() - b.getTimeInMillis()) / 60000; //60 * 1000    toMinutes * toSeconds
         return differenceMinutes;
     }
 
     public static Calendar getCalendarFromDateAndTime(Calendar date, Time time) {
-        if(date == null || time == null)
+        if (date == null || time == null)
             throw new NullPointerException("getCalendarFromDateAndTime(), One of both parameters are null");
 
         Calendar cal = Calendar.getInstance();

@@ -15,9 +15,6 @@ import java.util.List;
 import ve.com.abicelis.remindy.R;
 import ve.com.abicelis.remindy.enums.TapTargetSequenceType;
 
-/**
- * Created by abice on 13/5/2017.
- */
 
 public class TapTargetSequenceUtil {
 
@@ -26,7 +23,7 @@ public class TapTargetSequenceUtil {
     public static void showTapTargetSequenceFor(@NonNull final Activity activity, @NonNull TapTargetSequenceType type) {
         List<TapTarget> targets = new ArrayList<>();
 
-        if(!SharedPreferenceUtil.doShowTapTargetSequenceFor(activity, type))
+        if (!SharedPreferenceUtil.doShowTapTargetSequenceFor(activity, type))
             return;
 
         switch (type) {

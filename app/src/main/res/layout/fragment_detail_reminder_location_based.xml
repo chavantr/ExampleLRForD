@@ -62,7 +62,7 @@
         android:id="@+id/fragment_reminder_location_based_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="260dp"
         android:layout_marginTop="8dp"
         tools:context="ve.com.abicelis.remindy.app.activities.TaskDetailActivity"
         />

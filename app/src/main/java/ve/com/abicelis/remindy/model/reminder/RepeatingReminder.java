@@ -15,9 +15,7 @@ import ve.com.abicelis.remindy.enums.ReminderType;
 import ve.com.abicelis.remindy.model.Time;
 import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
 
-/**
- * Created by abice on 3/3/2017.
- */
+
 
 public class RepeatingReminder extends Reminder implements Serializable {
 

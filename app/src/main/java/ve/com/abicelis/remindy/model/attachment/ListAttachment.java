@@ -10,9 +10,7 @@ import java.util.List;
 
 import ve.com.abicelis.remindy.enums.AttachmentType;
 
-/**
- * Created by abice on 3/3/2017.
- */
+
 
 public class ListAttachment extends Attachment implements Serializable {
 

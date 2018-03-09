@@ -26,9 +26,7 @@ import ve.com.abicelis.remindy.util.FileUtil;
 import ve.com.abicelis.remindy.util.ImageUtil;
 import ve.com.abicelis.remindy.util.SnackbarUtil;
 
-/**
- * Created by abice on 18/4/2017.
- */
+
 
 public class ViewImageAttachmentActivity extends AppCompatActivity implements View.OnClickListener{
 

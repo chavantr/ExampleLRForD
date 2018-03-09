@@ -49,9 +49,7 @@ import ve.com.abicelis.remindy.util.FileUtil;
 import ve.com.abicelis.remindy.util.PermissionUtil;
 import ve.com.abicelis.remindy.util.SnackbarUtil;
 
-/**
- * Created by abice on 16/3/2017.
- */
+
 
 public class SelectImageSourceDialogFragment extends DialogFragment implements View.OnClickListener {
 

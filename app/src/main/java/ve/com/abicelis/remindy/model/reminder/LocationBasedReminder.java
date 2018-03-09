@@ -10,9 +10,7 @@ import ve.com.abicelis.remindy.R;
 import ve.com.abicelis.remindy.enums.ReminderType;
 import ve.com.abicelis.remindy.model.Place;
 
-/**
- * Created by abice on 3/3/2017.
- */
+
 
 public class LocationBasedReminder extends Reminder implements Serializable {
 

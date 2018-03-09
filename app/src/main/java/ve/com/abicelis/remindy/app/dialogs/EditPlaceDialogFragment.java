@@ -11,9 +11,6 @@ import android.widget.EditText;
 
 import ve.com.abicelis.remindy.R;
 
-/**
- * Created by abice on 16/3/2017.
- */
 
 public class EditPlaceDialogFragment extends DialogFragment implements View.OnClickListener {
 

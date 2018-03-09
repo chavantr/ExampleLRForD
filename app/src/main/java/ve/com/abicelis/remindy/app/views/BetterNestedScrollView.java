@@ -6,10 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
-/**
- * Created by abice on 27/4/2017.
- * Note: Not my code, got this fix from http://stackoverflow.com/questions/37384640/nestedscrollview-not-fling-with-recyclerview-inside
- */
+
 
 public class BetterNestedScrollView extends NestedScrollView {
     @SuppressWarnings("unused")

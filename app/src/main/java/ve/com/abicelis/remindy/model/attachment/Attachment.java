@@ -4,15 +4,13 @@ import java.io.Serializable;
 
 import ve.com.abicelis.remindy.enums.AttachmentType;
 
-/**
- * Created by abice on 3/3/2017.
- */
+
 
 public abstract class Attachment implements Serializable {
     private int id;
     private int taskId;
 
-    public Attachment() {}   //id-less Constructor used when creating Attachments
+    public Attachment() {}
     public Attachment(int id, int taskId) {
         this.id = id;
         this.taskId = taskId;

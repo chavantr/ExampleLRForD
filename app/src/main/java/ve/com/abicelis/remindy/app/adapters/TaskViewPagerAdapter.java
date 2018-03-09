@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-/**
- * Created by abice on 30/1/2017.
- */
+
 
 public class TaskViewPagerAdapter extends FragmentPagerAdapter {
 

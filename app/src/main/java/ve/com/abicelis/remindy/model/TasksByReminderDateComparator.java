@@ -8,9 +8,7 @@ import ve.com.abicelis.remindy.model.reminder.OneTimeReminder;
 import ve.com.abicelis.remindy.model.reminder.RepeatingReminder;
 import ve.com.abicelis.remindy.util.TaskUtil;
 
-/**
- * Created by abice on 11/3/2017.
- */
+
 
 public class TasksByReminderDateComparator implements Comparator<Task> {
     @Override

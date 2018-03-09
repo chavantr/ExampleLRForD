@@ -26,9 +26,7 @@ import ve.com.abicelis.remindy.model.Place;
 import ve.com.abicelis.remindy.util.SnackbarUtil;
 import ve.com.abicelis.remindy.util.TapTargetSequenceUtil;
 
-/**
- * Created by abice on 30/3/2017.
- */
+
 
 public class PlaceListActivity extends AppCompatActivity implements View.OnClickListener {
 

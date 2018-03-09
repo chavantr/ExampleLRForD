@@ -21,9 +21,7 @@ import ve.com.abicelis.remindy.enums.TaskViewModelType;
 import ve.com.abicelis.remindy.model.Place;
 import ve.com.abicelis.remindy.viewmodel.TaskViewModel;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceViewHolder> {
 

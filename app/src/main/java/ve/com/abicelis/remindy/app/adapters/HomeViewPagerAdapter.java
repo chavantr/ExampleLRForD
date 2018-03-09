@@ -10,9 +10,7 @@ import java.util.List;
 
 import ve.com.abicelis.remindy.app.fragments.HomeListFragment;
 
-/**
- * Created by abice on 30/1/2017.
- */
+
 
 public class HomeViewPagerAdapter extends FragmentPagerAdapter {
 

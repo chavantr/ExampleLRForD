@@ -31,9 +31,7 @@ import ve.com.abicelis.remindy.enums.TriggerMinutesBeforeNotificationType;
 import ve.com.abicelis.remindy.util.PermissionUtil;
 
 
-/**
- * Created by abice on 9/2/2017.
- */
+
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 

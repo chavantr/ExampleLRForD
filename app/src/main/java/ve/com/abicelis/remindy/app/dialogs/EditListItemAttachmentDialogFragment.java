@@ -14,9 +14,7 @@ import android.widget.Toast;
 
 import ve.com.abicelis.remindy.R;
 
-/**
- * Created by abice on 16/3/2017.
- */
+
 
 public class EditListItemAttachmentDialogFragment extends DialogFragment implements View.OnClickListener {
 

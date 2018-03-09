@@ -23,9 +23,7 @@ import java.util.Locale;
 
 import ve.com.abicelis.remindy.R;
 
-/**
- * Created by abice on 29/3/2017.
- */
+
 
 public class AboutActivity extends AppCompatActivity {
 

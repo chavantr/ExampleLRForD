@@ -33,9 +33,7 @@ import ve.com.abicelis.remindy.database.RemindyDAO;
 import ve.com.abicelis.remindy.model.Place;
 import ve.com.abicelis.remindy.model.reminder.LocationBasedReminder;
 
-/**
- * Created by abice on 20/4/2017.
- */
+
 
 public class EditLocationBasedReminderFragment extends Fragment implements TaskDataInterface, OnMapReadyCallback {
 

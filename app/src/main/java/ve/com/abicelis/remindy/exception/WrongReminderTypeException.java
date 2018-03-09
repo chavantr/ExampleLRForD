@@ -1,8 +1,6 @@
 package ve.com.abicelis.remindy.exception;
 
-/**
- * Created by abice on 12/3/2017.
- */
+
 
 public class WrongReminderTypeException extends Exception {
 

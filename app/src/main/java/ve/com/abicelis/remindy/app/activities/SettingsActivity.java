@@ -17,9 +17,7 @@ import ve.com.abicelis.remindy.enums.DateFormat;
 import ve.com.abicelis.remindy.enums.TimeFormat;
 import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
 
-/**
- * Created by abice on 30/3/2017.
- */
+
 
 public class SettingsActivity extends AppCompatActivity {
 

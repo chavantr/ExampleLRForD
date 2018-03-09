@@ -15,9 +15,6 @@ import ve.com.abicelis.remindy.model.Time;
 import ve.com.abicelis.remindy.util.FileUtil;
 
 
-/**
- * Created by Alex on 9/3/2017.
- */
 public class RemindyDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Remindy.db";
@@ -32,7 +29,7 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
     public RemindyDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
-        mAppDbFilepath =  context.getDatabasePath(DATABASE_NAME).getPath();
+        mAppDbFilepath = context.getDatabasePath(DATABASE_NAME).getPath();
         mDbExternalBackupFilepath = Environment.getExternalStorageDirectory().getPath() + "/" + DATABASE_NAME;
         mContext = context;
     }
@@ -56,7 +53,7 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
     /**
      * Copies the database file at the specified location over the current
      * internal application database.
-     * */
+     */
     public boolean exportDatabase() throws IOException {
 
         // Close the SQLiteOpenHelper so it will commit the created empty
@@ -75,7 +72,7 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
     /**
      * Copies the database file at the specified location over the current
      * internal application database.
-     * */
+     */
     public boolean importDatabase() throws IOException {
 
         // Close the SQLiteOpenHelper so it will commit the created empty
@@ -158,12 +155,12 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
                 "(3,    'UNPROGRAMMED',     'Mock Task 3',      'Task 3 - No Reminder',             'PERSONAL',    'NONE',             -1)," +
 
 
-                "(4,    'DONE',             'Mock Task 4',      'Task 4 - One-time DONE',           'PERSONAL',     'ONE_TIME',         "+dateToday+")," +
-                "(5,    'DONE',             'Mock Task 5',      'Task 5 - One-time DONE',           'BUSINESS',     'ONE_TIME',         "+dateYesterday+")," +
-                "(6,    'DONE',             'Mock Task 6',      'Task 6 - One-time DONE',           'PERSONAL',     'ONE_TIME',         "+dateLastWeek+")," +
-                "(7,    'DONE',             'Mock Task 7',      'Task 7 - One-time DONE',           'BUSINESS',     'ONE_TIME',         "+dateToday+")," +
-                "(8,    'DONE',             'Mock Task 8',      'Task 8 - One-time DONE',           'PERSONAL',     'ONE_TIME',         "+dateYesterday+")," +
-                "(9,    'DONE',             'Mock Task 9',      'Task 9 - One-time DONE',           'BUSINESS',     'ONE_TIME',         "+dateLastWeek+")," +
+                "(4,    'DONE',             'Mock Task 4',      'Task 4 - One-time DONE',           'PERSONAL',     'ONE_TIME',         " + dateToday + ")," +
+                "(5,    'DONE',             'Mock Task 5',      'Task 5 - One-time DONE',           'BUSINESS',     'ONE_TIME',         " + dateYesterday + ")," +
+                "(6,    'DONE',             'Mock Task 6',      'Task 6 - One-time DONE',           'PERSONAL',     'ONE_TIME',         " + dateLastWeek + ")," +
+                "(7,    'DONE',             'Mock Task 7',      'Task 7 - One-time DONE',           'BUSINESS',     'ONE_TIME',         " + dateToday + ")," +
+                "(8,    'DONE',             'Mock Task 8',      'Task 8 - One-time DONE',           'PERSONAL',     'ONE_TIME',         " + dateYesterday + ")," +
+                "(9,    'DONE',             'Mock Task 9',      'Task 9 - One-time DONE',           'BUSINESS',     'ONE_TIME',         " + dateLastWeek + ")," +
 
                 "(10,   'PROGRAMMED',       'Mock Task 10',     'Task 10 - One-time Reminder',      'REPAIRS',     'ONE_TIME',         -1)," +
                 "(11,   'PROGRAMMED',       'Mock Task 11',     'Task 11 - One-time Reminder',      'BUSINESS',     'ONE_TIME',         -1)," +
@@ -211,21 +208,20 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
                 RemindyContract.OneTimeReminderTable.COLUMN_NAME_DATE.getName() + COMMA_SEP +
                 RemindyContract.OneTimeReminderTable.COLUMN_NAME_TIME.getName() +
                 ") VALUES " +
-                "(0,    4,      "+dateToday+",           "+time0600+")," +
-                "(1,    5,      "+dateTomorrow+",        "+time1259+")," +
-                "(2,    6,      "+dateNextWeek+",        "+time1930+")," +
-                "(3,    7,      "+dateNextMonth+",       "+time0600+")," +
-                "(4,    8,      "+dateNext3Months+",     "+time1800+")," +
-                "(5,    9,      "+dateNextYear+",        "+time0600+")," +
+                "(0,    4,      " + dateToday + ",           " + time0600 + ")," +
+                "(1,    5,      " + dateTomorrow + ",        " + time1259 + ")," +
+                "(2,    6,      " + dateNextWeek + ",        " + time1930 + ")," +
+                "(3,    7,      " + dateNextMonth + ",       " + time0600 + ")," +
+                "(4,    8,      " + dateNext3Months + ",     " + time1800 + ")," +
+                "(5,    9,      " + dateNextYear + ",        " + time0600 + ")," +
 
-                "(6,    10,     "+dateToday+",          "+time1259+")," +
-                "(7,    11,     "+dateTomorrow+",       "+time1930+")," +
-                "(8,    12,     "+dateIn2Days+",       "+time0600+")," +
-                "(9,    13,     "+dateNextMonth+",      "+time1930+")," +
-                "(10,   14,     "+dateNext3Months+",    "+time0600+")," +
-                "(11,   15,     "+dateFuture+",       "+time1800+");";
+                "(6,    10,     " + dateToday + ",          " + time1259 + ")," +
+                "(7,    11,     " + dateTomorrow + ",       " + time1930 + ")," +
+                "(8,    12,     " + dateIn2Days + ",       " + time0600 + ")," +
+                "(9,    13,     " + dateNextMonth + ",      " + time1930 + ")," +
+                "(10,   14,     " + dateNext3Months + ",    " + time0600 + ")," +
+                "(11,   15,     " + dateFuture + ",       " + time1800 + ");";
         sqLiteDatabase.execSQL(statement);
-
 
 
         //Insert mock Repeating reminders
@@ -240,12 +236,10 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
                 RemindyContract.RepeatingReminderTable.COLUMN_NAME_REPEAT_END_NUMBER_OF_EVENTS.getName() + COMMA_SEP +
                 RemindyContract.RepeatingReminderTable.COLUMN_NAME_REPEAT_END_DATE.getName() +
                 ") VALUES " +
-                "(0,    16,     "+dateYesterday+",  "+time0600+", 'MONTHLY',    2,      'FOREVER',          -1,     -1)," +
-                "(1,    17,     "+dateYesterday+",  "+time1800+", 'WEEKLY',     1,      'UNTIL_DATE',       -1,     "+dateToday+")," +
-                "(2,    18,     "+dateLastWeek+",   "+time1930+", 'DAILY',      1,      'FOR_X_EVENTS',      2,      -1);";
+                "(0,    16,     " + dateYesterday + ",  " + time0600 + ", 'MONTHLY',    2,      'FOREVER',          -1,     -1)," +
+                "(1,    17,     " + dateYesterday + ",  " + time1800 + ", 'WEEKLY',     1,      'UNTIL_DATE',       -1,     " + dateToday + ")," +
+                "(2,    18,     " + dateLastWeek + ",   " + time1930 + ", 'DAILY',      1,      'FOR_X_EVENTS',      2,      -1);";
         sqLiteDatabase.execSQL(statement);
-
-
 
 
         //Insert mock Places
@@ -284,13 +278,25 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
     private void createDatabase(SQLiteDatabase sqLiteDatabase) {
         String statement;
 
+        statement = "CREATE TABLE IF NOT EXISTS " + RemindyContract.UserTable.TABLE_NAME + " (" + RemindyContract.UserTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                RemindyContract.UserTable.COLUMN_NAME.getName() + " " + RemindyContract.UserTable.COLUMN_NAME.getDataType() + COMMA_SEP +
+
+                RemindyContract.UserTable.COLUMN_EMAIL.getName() + " " + RemindyContract.UserTable.COLUMN_EMAIL.getDataType() + COMMA_SEP +
+
+                RemindyContract.UserTable.COLUMN_PHONE.getName() + " " + RemindyContract.UserTable.COLUMN_PHONE.getDataType() + COMMA_SEP +
+
+                RemindyContract.UserTable.COLUMN_PASSWORD.getName() + " " + RemindyContract.UserTable.COLUMN_PASSWORD.getDataType() + " )";
+
+        sqLiteDatabase.execSQL(statement);
+
+
         statement = "CREATE TABLE " + RemindyContract.OneTimeReminderTable.TABLE_NAME + " (" +
                 RemindyContract.OneTimeReminderTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 RemindyContract.OneTimeReminderTable.COLUMN_NAME_TASK_FK.getName() + " " + RemindyContract.OneTimeReminderTable.COLUMN_NAME_TASK_FK.getDataType() +
                 " REFERENCES " + RemindyContract.TaskTable.TABLE_NAME + "(" + RemindyContract.TaskTable._ID + ") " + COMMA_SEP +
                 RemindyContract.OneTimeReminderTable.COLUMN_NAME_DATE.getName() + " " + RemindyContract.OneTimeReminderTable.COLUMN_NAME_DATE.getDataType() + COMMA_SEP +
                 RemindyContract.OneTimeReminderTable.COLUMN_NAME_TIME.getName() + " " + RemindyContract.OneTimeReminderTable.COLUMN_NAME_TIME.getDataType() +
-                " ); " ;
+                " ); ";
         sqLiteDatabase.execSQL(statement);
 
         statement = "CREATE TABLE " + RemindyContract.RepeatingReminderTable.TABLE_NAME + " (" +
@@ -304,7 +310,7 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
                 RemindyContract.RepeatingReminderTable.COLUMN_NAME_REPEAT_END_TYPE.getName() + " " + RemindyContract.RepeatingReminderTable.COLUMN_NAME_REPEAT_END_TYPE.getDataType() + COMMA_SEP +
                 RemindyContract.RepeatingReminderTable.COLUMN_NAME_REPEAT_END_NUMBER_OF_EVENTS.getName() + " " + RemindyContract.RepeatingReminderTable.COLUMN_NAME_REPEAT_END_NUMBER_OF_EVENTS.getDataType() + COMMA_SEP +
                 RemindyContract.RepeatingReminderTable.COLUMN_NAME_REPEAT_END_DATE.getName() + " " + RemindyContract.RepeatingReminderTable.COLUMN_NAME_REPEAT_END_DATE.getDataType() +
-                " ); " ;
+                " ); ";
         sqLiteDatabase.execSQL(statement);
 
         statement = "CREATE TABLE " + RemindyContract.PlaceTable.TABLE_NAME + " (" +
@@ -315,7 +321,7 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
                 RemindyContract.PlaceTable.COLUMN_NAME_LONGITUDE.getName() + " " + RemindyContract.PlaceTable.COLUMN_NAME_LONGITUDE.getDataType() + COMMA_SEP +
                 RemindyContract.PlaceTable.COLUMN_NAME_RADIUS.getName() + " " + RemindyContract.PlaceTable.COLUMN_NAME_RADIUS.getDataType() + COMMA_SEP +
                 RemindyContract.PlaceTable.COLUMN_NAME_IS_ONE_OFF.getName() + " " + RemindyContract.PlaceTable.COLUMN_NAME_IS_ONE_OFF.getDataType() +
-                " ); " ;
+                " ); ";
         sqLiteDatabase.execSQL(statement);
 
         statement = "CREATE TABLE " + RemindyContract.LocationBasedReminderTable.TABLE_NAME + " (" +
@@ -326,7 +332,7 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
                 " REFERENCES " + RemindyContract.PlaceTable.TABLE_NAME + "(" + RemindyContract.PlaceTable._ID + ") " + COMMA_SEP +
                 RemindyContract.LocationBasedReminderTable.COLUMN_NAME_TRIGGER_ENTERING.getName() + " " + RemindyContract.LocationBasedReminderTable.COLUMN_NAME_TRIGGER_ENTERING.getDataType() + COMMA_SEP +
                 RemindyContract.LocationBasedReminderTable.COLUMN_NAME_TRIGGER_EXITING.getName() + " " + RemindyContract.LocationBasedReminderTable.COLUMN_NAME_TRIGGER_EXITING.getDataType() +
-                " ); " ;
+                " ); ";
         sqLiteDatabase.execSQL(statement);
 
         statement = "CREATE TABLE " + RemindyContract.TaskTable.TABLE_NAME + " (" +
@@ -341,7 +347,6 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(statement);
 
 
-
         statement = "CREATE TABLE " + RemindyContract.AttachmentTable.TABLE_NAME + " (" +
                 RemindyContract.AttachmentTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + COMMA_SEP +
                 RemindyContract.AttachmentTable.COLUMN_NAME_TASK_FK.getName() + " " + RemindyContract.AttachmentTable.COLUMN_NAME_TASK_FK.getDataType() +
@@ -354,7 +359,7 @@ public class RemindyDbHelper extends SQLiteOpenHelper {
     }
 
     private void deleteDatabase(SQLiteDatabase sqLiteDatabase) {
-        String statement ;
+        String statement;
 
         statement = "DROP TABLE IF EXISTS " + RemindyContract.AttachmentTable.TABLE_NAME + "; ";
         sqLiteDatabase.execSQL(statement);

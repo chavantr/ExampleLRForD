@@ -1,13 +1,10 @@
 package ve.com.abicelis.remindy.app.adapters;
 
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -22,9 +19,7 @@ import ve.com.abicelis.remindy.app.holders.UnprogrammedTaskViewHolder;
 import ve.com.abicelis.remindy.enums.TaskViewModelType;
 import ve.com.abicelis.remindy.viewmodel.TaskViewModel;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class HomeAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
 

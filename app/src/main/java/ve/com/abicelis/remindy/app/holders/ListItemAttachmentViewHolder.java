@@ -20,9 +20,7 @@ import ve.com.abicelis.remindy.app.dialogs.EditListItemAttachmentDialogFragment;
 import ve.com.abicelis.remindy.model.attachment.ListItemAttachment;
 import ve.com.abicelis.remindy.util.ClipboardUtil;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class ListItemAttachmentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener, EditListItemAttachmentDialogFragment.EditListItemAttachmentDialogDismissListener {
 

@@ -4,9 +4,6 @@ import java.util.Calendar;
 
 import ve.com.abicelis.remindy.util.CalendarUtil;
 
-/**
- * Created by abice on 22/4/2017.
- */
 
 public class CalendarPeriod {
     private Calendar start;

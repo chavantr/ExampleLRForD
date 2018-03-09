@@ -2,9 +2,7 @@ package ve.com.abicelis.remindy.model.attachment;
 
 import java.io.Serializable;
 
-/**
- * Created by abice on 3/3/2017.
- */
+
 
 public class ListItemAttachment implements Serializable {
 

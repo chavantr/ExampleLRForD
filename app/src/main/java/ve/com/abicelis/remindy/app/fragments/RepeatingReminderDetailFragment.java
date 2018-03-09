@@ -19,9 +19,7 @@ import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
 import ve.com.abicelis.remindy.util.SnackbarUtil;
 import ve.com.abicelis.remindy.util.TaskUtil;
 
-/**
- * Created by abice on 13/3/2017.
- */
+
 
 public class RepeatingReminderDetailFragment extends Fragment {
 

@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.google.android.gms.location.Geofence;
 
@@ -19,32 +18,33 @@ import java.util.Collections;
 import java.util.List;
 
 import ve.com.abicelis.remindy.enums.AttachmentType;
-import ve.com.abicelis.remindy.enums.TaskCategory;
 import ve.com.abicelis.remindy.enums.ReminderRepeatEndType;
 import ve.com.abicelis.remindy.enums.ReminderRepeatType;
+import ve.com.abicelis.remindy.enums.ReminderType;
+import ve.com.abicelis.remindy.enums.TaskCategory;
 import ve.com.abicelis.remindy.enums.TaskSortType;
 import ve.com.abicelis.remindy.enums.TaskStatus;
-import ve.com.abicelis.remindy.enums.ReminderType;
 import ve.com.abicelis.remindy.enums.TaskViewModelType;
 import ve.com.abicelis.remindy.exception.CouldNotDeleteDataException;
 import ve.com.abicelis.remindy.exception.CouldNotGetDataException;
 import ve.com.abicelis.remindy.exception.CouldNotInsertDataException;
 import ve.com.abicelis.remindy.exception.CouldNotUpdateDataException;
 import ve.com.abicelis.remindy.exception.PlaceNotFoundException;
+import ve.com.abicelis.remindy.model.Place;
+import ve.com.abicelis.remindy.model.Task;
+import ve.com.abicelis.remindy.model.Time;
 import ve.com.abicelis.remindy.model.UnprogrammedTasksByTitleComparator;
+import ve.com.abicelis.remindy.model.User;
 import ve.com.abicelis.remindy.model.attachment.Attachment;
 import ve.com.abicelis.remindy.model.attachment.AudioAttachment;
 import ve.com.abicelis.remindy.model.attachment.ImageAttachment;
 import ve.com.abicelis.remindy.model.attachment.LinkAttachment;
 import ve.com.abicelis.remindy.model.attachment.ListAttachment;
+import ve.com.abicelis.remindy.model.attachment.TextAttachment;
 import ve.com.abicelis.remindy.model.reminder.LocationBasedReminder;
 import ve.com.abicelis.remindy.model.reminder.OneTimeReminder;
 import ve.com.abicelis.remindy.model.reminder.Reminder;
 import ve.com.abicelis.remindy.model.reminder.RepeatingReminder;
-import ve.com.abicelis.remindy.model.Place;
-import ve.com.abicelis.remindy.model.Task;
-import ve.com.abicelis.remindy.model.attachment.TextAttachment;
-import ve.com.abicelis.remindy.model.Time;
 import ve.com.abicelis.remindy.util.CalendarUtil;
 import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
 import ve.com.abicelis.remindy.util.TaskUtil;
@@ -52,9 +52,7 @@ import ve.com.abicelis.remindy.util.sorting.TaskSortingUtil;
 import ve.com.abicelis.remindy.viewmodel.TaskTriggerViewModel;
 import ve.com.abicelis.remindy.viewmodel.TaskViewModel;
 
-/**
- * Created by Alex on 9/3/2017.
- */
+
 public class RemindyDAO {
 
     private RemindyDbHelper mDatabaseHelper;
@@ -66,11 +64,25 @@ public class RemindyDAO {
     }
 
 
-    /* Get data from database */
-    /**
-     * Returns a List of Tasks (with Reminder and Attachments) which have TaskStatus.UNPROGRAMMED. Sorted Alphabetically by Task Title
-     * @return A List of TaskViewModel
-     */
+    public boolean loginUser(String email, String password) {
+        SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
+        String[] args = {email, password};
+        Cursor cursor = db.query("user", null, "email=? AND password=?", args, null, null, null);
+        if (null != cursor && cursor.getCount() > 0) return true;
+        return false;
+    }
+
+    public long insertUser(User user) {
+        SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", user.getName());
+        contentValues.put("email", user.getEmail());
+        contentValues.put("phone", user.getPhone());
+        contentValues.put("password", user.getPassword());
+        return db.insert("user", null, contentValues);
+    }
+
+
     public List<TaskViewModel> getUnprogrammedTasks() throws CouldNotGetDataException {
         SQLiteDatabase db = mDatabaseHelper.getReadableDatabase();
         List<TaskViewModel> result = new ArrayList<>();
@@ -88,7 +100,7 @@ public class RemindyDAO {
                 current.setAttachments(getAttachmentsOfTask(current.getId()));
 
                 //If Task !ReminderType.NONE, throw an error.
-                if(current.getReminderType() != ReminderType.NONE)
+                if (current.getReminderType() != ReminderType.NONE)
                     throw new CouldNotGetDataException("Error, found task with TaskStatus=UNPROGRAMMED with ReminderType != NONE");
 
                 tasks.add(current);
@@ -110,6 +122,7 @@ public class RemindyDAO {
 
     /**
      * Returns a List of Tasks (with Reminder and Attachments) which have TaskStatus.PROGRAMMED AND ReminderType.LOCATION_BASED, sorted by Location
+     *
      * @return A List of TaskViewModel
      */
     public List<TaskViewModel> getLocationBasedTasks(Resources resources) throws CouldNotGetDataException, InvalidClassException {
@@ -125,14 +138,14 @@ public class RemindyDAO {
             while (cursor.moveToNext()) {
                 Task current = getTaskFromCursor(cursor);
 
-                if(current.getReminderType() != ReminderType.LOCATION_BASED)      //Skip NON location-based task
+                if (current.getReminderType() != ReminderType.LOCATION_BASED)      //Skip NON location-based task
                     continue;
 
                 //Try to get the attachments, if there are any
                 current.setAttachments(getAttachmentsOfTask(current.getId()));
 
                 //If Task ReminderType.NONE, throw an error.
-                if(current.getReminderType() == ReminderType.NONE)
+                if (current.getReminderType() == ReminderType.NONE)
                     throw new CouldNotGetDataException("Error, Task with TaskStatus=PROGRAMMED has ReminderType=NONE");
                 else
                     current.setReminder(getReminderOfTask(current.getId(), current.getReminderType()));
@@ -153,6 +166,7 @@ public class RemindyDAO {
 
     /**
      * Returns a List of Tasks (with Reminder and Attachments) which have TaskStatus.PROGRAMMED
+     *
      * @param sortType TaskSortType enum value with which to sort results. By date or location
      * @return A List of TaskViewModel
      */
@@ -169,14 +183,14 @@ public class RemindyDAO {
             while (cursor.moveToNext()) {
                 Task current = getTaskFromCursor(cursor);
 
-                if(!includeLocationBasedTasks && current.getReminderType() == ReminderType.LOCATION_BASED)      //Skip location-based task
+                if (!includeLocationBasedTasks && current.getReminderType() == ReminderType.LOCATION_BASED)      //Skip location-based task
                     continue;
 
                 //Try to get the attachments, if there are any
                 current.setAttachments(getAttachmentsOfTask(current.getId()));
 
                 //If Task ReminderType.NONE, throw an error.
-                if(current.getReminderType() == ReminderType.NONE)
+                if (current.getReminderType() == ReminderType.NONE)
                     throw new CouldNotGetDataException("Error, Task with TaskStatus=PROGRAMMED has ReminderType=NONE");
                 else
                     current.setReminder(getReminderOfTask(current.getId(), current.getReminderType()));
@@ -196,6 +210,7 @@ public class RemindyDAO {
 
     /**
      * Returns a List of Tasks (with Reminder and Attachments) which have TaskStatus.DONE
+     *
      * @param sortType TaskSortType enum value with which to sort results. By date or location
      * @return A List of TaskViewModel
      */
@@ -216,7 +231,7 @@ public class RemindyDAO {
                 current.setAttachments(getAttachmentsOfTask(current.getId()));
 
                 //If Task has reminder, get it
-                if(current.getReminderType() != ReminderType.NONE)
+                if (current.getReminderType() != ReminderType.NONE)
                     current.setReminder(getReminderOfTask(current.getId(), current.getReminderType()));
 
                 tasks.add(current);
@@ -234,6 +249,7 @@ public class RemindyDAO {
 
     /**
      * Returns a List of Tasks (Status:PROGRAMMED) which have Location-Based reminders of a particular Place, set to trigger either entering or exiting or both.
+     *
      * @param placeId The ID of the place with which to look for Tasks
      */
     public List<Task> getLocationBasedTasksAssociatedWithPlace(int placeId, int geofenceTransition) throws CouldNotGetDataException {
@@ -245,15 +261,15 @@ public class RemindyDAO {
             case -1: //Any
                 cursor = db.query(RemindyContract.LocationBasedReminderTable.TABLE_NAME, null,
                         RemindyContract.LocationBasedReminderTable.COLUMN_NAME_PLACE_FK.getName() + "=?",
-                        new String[] {String.valueOf(placeId)}, null, null, null);
+                        new String[]{String.valueOf(placeId)}, null, null, null);
                 break;
 
             case Geofence.GEOFENCE_TRANSITION_DWELL:
             case Geofence.GEOFENCE_TRANSITION_ENTER:
                 cursor = db.query(RemindyContract.LocationBasedReminderTable.TABLE_NAME, null,
                         RemindyContract.LocationBasedReminderTable.COLUMN_NAME_PLACE_FK.getName() + "=? AND " +
-                        RemindyContract.LocationBasedReminderTable.COLUMN_NAME_TRIGGER_ENTERING.getName() + "=?",
-                        new String[] {String.valueOf(placeId), "true"}, null, null, null);
+                                RemindyContract.LocationBasedReminderTable.COLUMN_NAME_TRIGGER_ENTERING.getName() + "=?",
+                        new String[]{String.valueOf(placeId), "true"}, null, null, null);
                 break;
 
 
@@ -261,16 +277,16 @@ public class RemindyDAO {
                 cursor = db.query(RemindyContract.LocationBasedReminderTable.TABLE_NAME, null,
                         RemindyContract.LocationBasedReminderTable.COLUMN_NAME_PLACE_FK.getName() + "=? AND " +
                                 RemindyContract.LocationBasedReminderTable.COLUMN_NAME_TRIGGER_EXITING.getName() + "=?",
-                        new String[] {String.valueOf(placeId), "true"}, null, null, null);
+                        new String[]{String.valueOf(placeId), "true"}, null, null, null);
                 break;
         }
 
-        if(cursor != null) {
+        if (cursor != null) {
             try {
                 while (cursor.moveToNext()) {
                     int taskId = cursor.getInt(cursor.getColumnIndex(RemindyContract.LocationBasedReminderTable.COLUMN_NAME_TASK_FK.getName()));
                     Task task = getTask(taskId);
-                    if(task.getStatus().equals(TaskStatus.PROGRAMMED))
+                    if (task.getStatus().equals(TaskStatus.PROGRAMMED))
                         tasks.add(task);
                 }
             } finally {
@@ -285,6 +301,7 @@ public class RemindyDAO {
 
     /**
      * Returns the next PROGRAMMED task(With ONE-TIME or REPEATING reminder) to occur
+     *
      * @param alreadyTriggeredTaskList an optional task list to not include in the search
      * @return A single TaskTriggerViewModel or null of there are no tasks
      */
@@ -302,33 +319,33 @@ public class RemindyDAO {
             while (cursor.moveToNext()) {
                 Task current = getTaskFromCursor(cursor);
 
-                if(alreadyTriggeredTaskList.contains(current.getId()))   //Skip
+                if (alreadyTriggeredTaskList.contains(current.getId()))   //Skip
                     continue;
 
                 try {
                     current.setReminder(getReminderOfTask(current.getId(), current.getReminderType()));
-                }catch (CouldNotGetDataException | SQLiteConstraintException e ) {
+                } catch (CouldNotGetDataException | SQLiteConstraintException e) {
                     throw new CouldNotGetDataException("Error fetching reminder for task ID" + current.getId(), e);
                 }
 
                 //TODO: this filter could be made on db query.
-                if( current.getReminderType().equals(ReminderType.ONE_TIME) ||  current.getReminderType().equals(ReminderType.REPEATING) ) {
+                if (current.getReminderType().equals(ReminderType.ONE_TIME) || current.getReminderType().equals(ReminderType.REPEATING)) {
 
-                    if(TaskUtil.checkIfOverdue(current.getReminder()))  //Skip overdue reminders
+                    if (TaskUtil.checkIfOverdue(current.getReminder()))  //Skip overdue reminders
                         continue;
 
-                    if(nextTaskToTrigger == null) {
+                    if (nextTaskToTrigger == null) {
                         nextTaskToTrigger = current;
-                        triggerDate = (current.getReminderType().equals(ReminderType.ONE_TIME) ? ((OneTimeReminder)current.getReminder() ).getDate() : TaskUtil.getRepeatingReminderNextCalendar( (RepeatingReminder)current.getReminder()) );
-                        triggerTime = (current.getReminderType().equals(ReminderType.ONE_TIME) ? ((OneTimeReminder)current.getReminder() ).getTime() : ((RepeatingReminder)current.getReminder()).getTime() );
+                        triggerDate = (current.getReminderType().equals(ReminderType.ONE_TIME) ? ((OneTimeReminder) current.getReminder()).getDate() : TaskUtil.getRepeatingReminderNextCalendar((RepeatingReminder) current.getReminder()));
+                        triggerTime = (current.getReminderType().equals(ReminderType.ONE_TIME) ? ((OneTimeReminder) current.getReminder()).getTime() : ((RepeatingReminder) current.getReminder()).getTime());
                         continue;
                     }
 
-                    if(current.getReminderType().equals(ReminderType.ONE_TIME)) {
-                        OneTimeReminder otr = (OneTimeReminder)current.getReminder();
+                    if (current.getReminderType().equals(ReminderType.ONE_TIME)) {
+                        OneTimeReminder otr = (OneTimeReminder) current.getReminder();
                         Calendar currentDate = CalendarUtil.getCalendarFromDateAndTime(otr.getDate(), otr.getTime());
 
-                        if(currentDate.compareTo(triggerDate) < 0 ) {
+                        if (currentDate.compareTo(triggerDate) < 0) {
                             nextTaskToTrigger = current;
                             triggerDate = currentDate;
                             triggerTime = otr.getTime();
@@ -336,13 +353,13 @@ public class RemindyDAO {
                         }
                     }
 
-                    if(current.getReminderType().equals(ReminderType.REPEATING)) {
-                        RepeatingReminder rr = (RepeatingReminder)current.getReminder();
+                    if (current.getReminderType().equals(ReminderType.REPEATING)) {
+                        RepeatingReminder rr = (RepeatingReminder) current.getReminder();
                         Calendar currentDate = TaskUtil.getRepeatingReminderNextCalendar(rr);
 
-                        if(currentDate == null) continue;   //Overdue
+                        if (currentDate == null) continue;   //Overdue
 
-                        if(currentDate.compareTo(triggerDate) < 0 ) {
+                        if (currentDate.compareTo(triggerDate) < 0) {
                             nextTaskToTrigger = current;
                             triggerDate = currentDate;
                             triggerTime = rr.getTime();
@@ -356,14 +373,15 @@ public class RemindyDAO {
             cursor.close();
         }
 
-        if(nextTaskToTrigger == null) return null;
+        if (nextTaskToTrigger == null) return null;
         return new TaskTriggerViewModel(nextTaskToTrigger, triggerDate, triggerTime);
     }
 
 
     /**
      * Returns a Task (with Reminder and Attachments) given a taskId
-     * @param taskId    The ID of the Task to get.
+     *
+     * @param taskId The ID of the Task to get.
      */
     public Task getTask(int taskId) throws CouldNotGetDataException, SQLiteConstraintException {
         SQLiteDatabase db = mDatabaseHelper.getReadableDatabase();
@@ -379,7 +397,7 @@ public class RemindyDAO {
         Task task = getTaskFromCursor(cursor);
         task.setAttachments(getAttachmentsOfTask(taskId));
 
-        if(task.getReminderType() != ReminderType.NONE)
+        if (task.getReminderType() != ReminderType.NONE)
             task.setReminder(getReminderOfTask(taskId, task.getReminderType()));
         return task;
     }
@@ -426,7 +444,7 @@ public class RemindyDAO {
                     taskCount = 0;
                 }
 
-                if(taskCount > 0)
+                if (taskCount > 0)
                     places.add(place);
             }
         } finally {
@@ -437,11 +455,9 @@ public class RemindyDAO {
     }
 
 
-
-
-
     /**
      * Returns a Place given a placeId.
+     *
      * @param placeId The id of the place
      */
     public Place getPlace(int placeId) throws PlaceNotFoundException, SQLiteConstraintException {
@@ -461,6 +477,7 @@ public class RemindyDAO {
 
     /**
      * Returns a List of Attachments associated to a Task.
+     *
      * @param taskId The id of the Task
      */
     public ArrayList<Attachment> getAttachmentsOfTask(int taskId) {
@@ -468,7 +485,7 @@ public class RemindyDAO {
         SQLiteDatabase db = mDatabaseHelper.getReadableDatabase();
         Cursor cursor = db.query(RemindyContract.AttachmentTable.TABLE_NAME, null,
                 RemindyContract.AttachmentTable.COLUMN_NAME_TASK_FK.getName() + "=?",
-                        new String[]{String.valueOf(taskId)}, null, null, null);
+                new String[]{String.valueOf(taskId)}, null, null, null);
 
         try {
             while (cursor.moveToNext()) {
@@ -484,10 +501,11 @@ public class RemindyDAO {
 
     /**
      * Returns a Reminder given its taskId and reminderType
-     * @param taskId The ID of the task
+     *
+     * @param taskId       The ID of the task
      * @param reminderType The Type of reminder
      */
-    public Reminder getReminderOfTask(int taskId, @NonNull ReminderType reminderType) throws  CouldNotGetDataException, SQLiteConstraintException {
+    public Reminder getReminderOfTask(int taskId, @NonNull ReminderType reminderType) throws CouldNotGetDataException, SQLiteConstraintException {
         SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
         Reminder reminder;
 
@@ -526,9 +544,9 @@ public class RemindyDAO {
                     break;
                 case LOCATION_BASED:
                     reminder = getLocationBasedReminderFromCursor(cursor);
-                    int placeId = ((LocationBasedReminder)reminder).getPlaceId();
+                    int placeId = ((LocationBasedReminder) reminder).getPlaceId();
                     try {
-                        ((LocationBasedReminder)reminder).setPlace(getPlace(placeId));
+                        ((LocationBasedReminder) reminder).setPlace(getPlace(placeId));
                     } catch (PlaceNotFoundException | SQLiteConstraintException e) {
                         throw new CouldNotGetDataException("Error trying to get Place for Location-based Reminder", e);
                     }
@@ -558,6 +576,7 @@ public class RemindyDAO {
 
     /**
      * Deletes a single Place, given its ID, also deletes Location-based reminders associated with place and updates Task ReminderType to NONE
+     *
      * @param placeId The ID of the place to delete
      */
     public boolean deletePlace(int placeId) throws CouldNotDeleteDataException {
@@ -566,11 +585,11 @@ public class RemindyDAO {
         List<Task> tasks;
         try {
             tasks = getLocationBasedTasksAssociatedWithPlace(placeId, -1);
-        }catch (CouldNotGetDataException e) {
+        } catch (CouldNotGetDataException e) {
             throw new CouldNotDeleteDataException("Error getting Task list associated with Place. PlaceID=" + placeId, e);
         }
 
-        if(tasks.size() > 0) {      //Remove Location-based reminders from task, and update task ReminderType to NONE.
+        if (tasks.size() > 0) {      //Remove Location-based reminders from task, and update task ReminderType to NONE.
             for (Task task : tasks) {
                 deleteReminderOfTask(task.getId());
                 task.setStatus(TaskStatus.UNPROGRAMMED);
@@ -591,6 +610,7 @@ public class RemindyDAO {
 
     /**
      * Deletes all Attachments linked to an Task, given the task's ID
+     *
      * @param taskId The ID of the reminder whose attachments will be deleted
      */
     public boolean deleteAttachmentsOfTask(int taskId) throws CouldNotDeleteDataException {
@@ -603,6 +623,7 @@ public class RemindyDAO {
 
     /**
      * Deletes a single attachment, given its ID
+     *
      * @param attachmentId The ID of the attachment to be deleted
      */
     public boolean deleteAttachment(int attachmentId) throws CouldNotDeleteDataException {
@@ -616,6 +637,7 @@ public class RemindyDAO {
 
     /**
      * Deletes the Reminder of type ReminderType associated to a Task
+     *
      * @param taskId The ID of the task
      */
     public void deleteReminderOfTask(int taskId) throws CouldNotDeleteDataException {
@@ -637,10 +659,9 @@ public class RemindyDAO {
     }
 
 
-
-
     /**
      * Deletes a Task and associated Attachments and Reminder
+     *
      * @param taskId The ID of the task
      */
     public boolean deleteTask(int taskId) throws CouldNotDeleteDataException {
@@ -657,7 +678,7 @@ public class RemindyDAO {
         deleteAttachmentsOfTask(taskId);
 
         //If task has a reminder, delete it
-        if(task.getReminderType() != ReminderType.NONE) {
+        if (task.getReminderType() != ReminderType.NONE) {
             deleteReminderOfTask(taskId);
         }
 
@@ -678,6 +699,7 @@ public class RemindyDAO {
 
     /**
      * Updates the information stored about a Place
+     *
      * @param place The Place to update
      */
     public long updatePlace(Place place) throws CouldNotUpdateDataException {
@@ -687,13 +709,14 @@ public class RemindyDAO {
                 RemindyContract.PlaceTable.TABLE_NAME,
                 getValuesFromPlace(place),
                 RemindyContract.PlaceTable._ID + " =? ",
-                new String[] {String.valueOf(place.getId())} );
+                new String[]{String.valueOf(place.getId())});
 
         return count;
     }
 
     /**
      * Deletes previous attachments of a task and reinserts them
+     *
      * @param task The Task whose attachments to delete and reinsert
      */
     public long[] updateAttachmentsOfTask(Task task) throws CouldNotUpdateDataException {
@@ -715,6 +738,7 @@ public class RemindyDAO {
 
     /**
      * Updates the information stored about a List of Attachments
+     *
      * @param attachments The Attachments to update
      */
     public long[] updateAttachments(ArrayList<Attachment> attachments) throws CouldNotUpdateDataException {
@@ -729,21 +753,23 @@ public class RemindyDAO {
 
     /**
      * Updates the information stored about an Attachment
+     *
      * @param attachment The Attachment to update
      */
     public long updateAttachment(Attachment attachment) throws CouldNotUpdateDataException {
         SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
 
         long updatedRowIds = db.update(RemindyContract.AttachmentTable.TABLE_NAME,
-                    getValuesFromAttachment(attachment),
-                    RemindyContract.AttachmentTable._ID + " =? ",
-                    new String[]{String.valueOf(attachment.getId())});
+                getValuesFromAttachment(attachment),
+                RemindyContract.AttachmentTable._ID + " =? ",
+                new String[]{String.valueOf(attachment.getId())});
 
         return updatedRowIds;
     }
 
     /**
      * Updates the information stored about a Reminder
+     *
      * @param reminder The Reminder to update
      */
     public boolean updateReminderOfTask(Reminder reminder, int taskId) throws CouldNotUpdateDataException {
@@ -752,14 +778,14 @@ public class RemindyDAO {
         //Old and New reminderType may be different, which are stored in different tables
         try {
             deleteReminderOfTask(taskId);
-        }catch (CouldNotDeleteDataException e) {
+        } catch (CouldNotDeleteDataException e) {
             throw new CouldNotUpdateDataException("Error while deleting old reminder in dao.updateReminder(). Reminder=" + reminder.toString(), e);
         }
 
-        if(reminder != null) {
+        if (reminder != null) {
             try {
                 insertReminderOfTask(taskId, reminder);
-            }catch (CouldNotInsertDataException e) {
+            } catch (CouldNotInsertDataException e) {
                 throw new CouldNotUpdateDataException("Error while inserting new reminder in dao.updateReminder(). Reminder=" + reminder.toString(), e);
             }
         }
@@ -770,6 +796,7 @@ public class RemindyDAO {
 
     /**
      * Updates the information stored about a Task, its Reminder and its Attachments.
+     *
      * @param task The Task to update
      */
     public long updateTask(Task task) throws CouldNotUpdateDataException {
@@ -783,7 +810,7 @@ public class RemindyDAO {
                 RemindyContract.TaskTable.TABLE_NAME,
                 getValuesFromTask(task),
                 RemindyContract.TaskTable._ID + " =? ",
-                new String[] {String.valueOf(task.getId())} );
+                new String[]{String.valueOf(task.getId())});
     }
 
 
@@ -798,6 +825,7 @@ public class RemindyDAO {
 
     /**
      * Inserts a new Place into the database.
+     *
      * @param place The Place to be inserted
      */
     public long insertPlace(Place place) throws CouldNotInsertDataException {
@@ -817,7 +845,8 @@ public class RemindyDAO {
 
     /**
      * Inserts a List of Attachments associated to an Task, into the database.
-     * @param taskId The id of the Task associated to the Attachments
+     *
+     * @param taskId      The id of the Task associated to the Attachments
      * @param attachments The List of Attachments to be inserted
      */
     public long[] insertAttachmentsOfTask(int taskId, List<Attachment> attachments) throws CouldNotInsertDataException {
@@ -842,7 +871,8 @@ public class RemindyDAO {
 
     /**
      * Inserts a new Reminder into the database.
-     * @param taskId The id of the Task associated to the Reminder
+     *
+     * @param taskId   The id of the Task associated to the Reminder
      * @param reminder The Reminder to insert
      */
     public long insertReminderOfTask(int taskId, Reminder reminder) throws CouldNotInsertDataException {
@@ -882,6 +912,7 @@ public class RemindyDAO {
 
     /**
      * Inserts a new Task and its associated Reminder and Attachments into the database.
+     *
      * @param task The Task (and associated Reminder and Attachments) to insert
      */
     public long insertTask(Task task) throws CouldNotInsertDataException {
@@ -896,11 +927,10 @@ public class RemindyDAO {
             throw new CouldNotInsertDataException("There was a problem inserting the Task: " + task.toString());
 
 
-
         //Insert Attachments
         if (task.getAttachments() != null && task.getAttachments().size() > 0) {
             try {
-                insertAttachmentsOfTask((int)newRowId, task.getAttachments());
+                insertAttachmentsOfTask((int) newRowId, task.getAttachments());
             } catch (CouldNotInsertDataException e) {
                 throw new CouldNotInsertDataException("There was a problem inserting the Attachments while inserting the Task: " + task.toString(), e);
             }
@@ -909,7 +939,7 @@ public class RemindyDAO {
         //Insert Reminder if it exists
         if (task.getReminder() != null) {
             try {
-                insertReminderOfTask((int)newRowId, task.getReminder());
+                insertReminderOfTask((int) newRowId, task.getReminder());
             } catch (CouldNotInsertDataException e) {
                 throw new CouldNotInsertDataException("There was a problem inserting the Reminder while inserting the Task: " + task.toString(), e);
             }
@@ -1093,11 +1123,11 @@ public class RemindyDAO {
         ReminderRepeatEndType repeatEndType = ReminderRepeatEndType.valueOf(cursor.getString(cursor.getColumnIndex(RemindyContract.RepeatingReminderTable.COLUMN_NAME_REPEAT_END_TYPE.getName())));
 
         int repeatEndNumberOfEvents = -1;
-        if(repeatEndType == ReminderRepeatEndType.FOR_X_EVENTS)
+        if (repeatEndType == ReminderRepeatEndType.FOR_X_EVENTS)
             repeatEndNumberOfEvents = cursor.getInt(cursor.getColumnIndex(RemindyContract.RepeatingReminderTable.COLUMN_NAME_REPEAT_END_NUMBER_OF_EVENTS.getName()));
 
         Calendar repeatEndDate = null;
-        if(repeatEndType == ReminderRepeatEndType.UNTIL_DATE) {
+        if (repeatEndType == ReminderRepeatEndType.UNTIL_DATE) {
             repeatEndDate = Calendar.getInstance();
             repeatEndDate.setTimeInMillis(cursor.getLong(cursor.getColumnIndex(RemindyContract.RepeatingReminderTable.COLUMN_NAME_REPEAT_END_DATE.getName())));
         }

@@ -16,9 +16,6 @@ import ve.com.abicelis.remindy.database.RemindyDAO;
 import ve.com.abicelis.remindy.exception.CouldNotGetDataException;
 import ve.com.abicelis.remindy.viewmodel.TaskTriggerViewModel;
 
-/**
- * Created by abice on 30/5/2017.
- */
 
 public class AlarmManagerUtil {
 
@@ -35,11 +32,11 @@ public class AlarmManagerUtil {
         TaskTriggerViewModel task;
         try {
             task = new RemindyDAO(context).getNextTaskToTrigger(triggeredTasks);
-        } catch (CouldNotGetDataException e ) {
+        } catch (CouldNotGetDataException e) {
             task = null;
         }
 
-        if(task != null) {
+        if (task != null) {
             Log.d(TAG, "Got Task ID " + task.getTask().getId() + ". Title:" + task.getTask().getTitle());
 
             int triggerMinutesBeforeNotification = SharedPreferenceUtil.getTriggerMinutesBeforeNotification(context).getMinutes();
@@ -49,10 +46,10 @@ public class AlarmManagerUtil {
             triggerTime.add(Calendar.MINUTE, -triggerMinutesBeforeNotification);
 
             //Build intent
-            Intent triggerIntent =  new Intent(context, TriggerTaskNotificationReceiver.class);
+            Intent triggerIntent = new Intent(context, TriggerTaskNotificationReceiver.class);
             triggerIntent.putExtra(TriggerTaskNotificationReceiver.TASK_ID_EXTRA, task.getTask().getId());
 
-            if(triggerTime.compareTo(Calendar.getInstance()) <= 0) {
+            if (triggerTime.compareTo(Calendar.getInstance()) <= 0) {
                 //Trigger now
                 Log.d(TAG, "Triggering now!");
 
@@ -63,7 +60,7 @@ public class AlarmManagerUtil {
 
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, triggerIntent, 0);
 
-                AlarmManager manager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+                AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 manager.set(AlarmManager.RTC_WAKEUP, triggerTime.getTimeInMillis(), pendingIntent);
             }
         }

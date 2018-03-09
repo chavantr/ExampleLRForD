@@ -1,8 +1,5 @@
 package ve.com.abicelis.remindy.enums;
 
-/**
- * Created by abice on 3/5/2017.
- */
 
 public enum TriggerMinutesBeforeNotificationType {
     MINUTES_1(1),
