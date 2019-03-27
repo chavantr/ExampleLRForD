@@ -4,9 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
 
-/**
- * Created by abice on 9/3/2017.
- */
 
 public class AddressResultReceiver extends ResultReceiver {
 

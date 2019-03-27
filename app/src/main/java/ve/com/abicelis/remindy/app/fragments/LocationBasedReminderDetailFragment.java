@@ -157,6 +157,7 @@ public class LocationBasedReminderDetailFragment extends Fragment implements OnM
         int strokeColor = ContextCompat.getColor(getActivity(), R.color.map_circle_stroke);
         int shadeColor = ContextCompat.getColor(getActivity(), R.color.map_circle_shade);
         LatLng latLng = ConversionUtil.placeToLatLng(mReminder.getPlace());
+
         mMap.addCircle(new CircleOptions()
                 .center(latLng)
                 .radius(mReminder.getPlace().getRadius())

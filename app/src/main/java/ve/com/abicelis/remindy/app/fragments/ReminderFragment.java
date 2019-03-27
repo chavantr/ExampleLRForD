@@ -133,9 +133,9 @@ public class ReminderFragment extends Fragment implements TaskDataInterface {
                 break;
 
             case LOCATION_BASED:
-                if(atLeastOnePlaceExists()) {
+                /*if(atLeastOnePlaceExists()) {
                     handleLocationBasedTaskReminderSelected();
-                } else
+                } else*/
                     handleNoPlacesExist();
                 break;
 

@@ -1,11 +1,9 @@
 package ve.com.abicelis.remindy.app.services;
 
-import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -15,23 +13,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
 
-import ve.com.abicelis.remindy.R;
-import ve.com.abicelis.remindy.database.RemindyDAO;
-import ve.com.abicelis.remindy.exception.CouldNotGetDataException;
 import ve.com.abicelis.remindy.util.AlarmManagerUtil;
-import ve.com.abicelis.remindy.util.CalendarUtil;
 import ve.com.abicelis.remindy.util.GeofenceUtil;
-import ve.com.abicelis.remindy.util.NotificationUtil;
 import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
-import ve.com.abicelis.remindy.viewmodel.TaskTriggerViewModel;
 
-/**
- * Created by abice on 29/4/2017.
- */
+
 
 public class NotificationIntentService extends Service implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {

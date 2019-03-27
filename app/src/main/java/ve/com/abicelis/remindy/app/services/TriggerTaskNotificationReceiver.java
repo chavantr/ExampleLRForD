@@ -10,7 +10,6 @@ import java.util.Locale;
 
 import ve.com.abicelis.remindy.R;
 import ve.com.abicelis.remindy.database.RemindyDAO;
-import ve.com.abicelis.remindy.enums.ReminderType;
 import ve.com.abicelis.remindy.exception.CouldNotGetDataException;
 import ve.com.abicelis.remindy.model.Task;
 import ve.com.abicelis.remindy.model.reminder.OneTimeReminder;
@@ -18,12 +17,8 @@ import ve.com.abicelis.remindy.model.reminder.RepeatingReminder;
 import ve.com.abicelis.remindy.util.AlarmManagerUtil;
 import ve.com.abicelis.remindy.util.NotificationUtil;
 import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
-import ve.com.abicelis.remindy.util.TaskUtil;
-import ve.com.abicelis.remindy.viewmodel.TaskTriggerViewModel;
 
-/**
- * Created by abice on 29/4/2017.
- */
+
 
 public class TriggerTaskNotificationReceiver extends BroadcastReceiver {
 

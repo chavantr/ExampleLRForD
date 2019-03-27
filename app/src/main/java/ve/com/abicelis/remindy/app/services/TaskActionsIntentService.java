@@ -20,9 +20,7 @@ import ve.com.abicelis.remindy.util.AlarmManagerUtil;
 import ve.com.abicelis.remindy.util.CalendarUtil;
 import ve.com.abicelis.remindy.util.SharedPreferenceUtil;
 
-/**
- * Created by abice on 31/5/2017.
- */
+
 
 public class TaskActionsIntentService extends IntentService {
 
